@@ -10,7 +10,7 @@ import Foundation
 
 /// An entity responsible for navigation.
 public protocol Navigator {
-    associatedtype Destination: RawRepresentable
+    associatedtype Destination
     
     /// Navigate to the specified destination.
     /// - Parameter destination: A destination reachable by this navigator.

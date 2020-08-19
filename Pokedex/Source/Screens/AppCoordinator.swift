@@ -10,10 +10,6 @@ import UIKit
 
 final class AppCoordinator: BaseCoordinator {
     
-    enum Destinations {
-        
-    }
-    
     override init(with navigationController: UINavigationController) {
         super.init(with: navigationController)
         
@@ -21,10 +17,22 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
+        let presenter = PokemonListPresenter(with: self)
+        let view = PokemonListViewController(with: presenter)
+        presenter.view = view
+        show(view, with: .pushFirst(animated: false))
+    }
+    
+}
+
+extension AppCoordinator: Navigator {
+    
+    enum Destinations {
+        case pokemonList
+    }
+    
+    func navigate(to destination: AppCoordinator.Destinations) {
         
     }
     
-    func navigate(to destination: Destinations) {
-        
-    }
 }

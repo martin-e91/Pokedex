@@ -12,17 +12,18 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var appCoordinator: AppCoordinator!
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let navController = UINavigationController()
         
+        appCoordinator = AppCoordinator(with: navController)
+        appCoordinator.start()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
-        
-        let appCoordinator = AppCoordinator(with: navController)
-        appCoordinator.start()
         
         return true
     }
