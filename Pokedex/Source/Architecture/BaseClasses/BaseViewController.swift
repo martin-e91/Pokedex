@@ -27,7 +27,7 @@ open class BaseViewController<P>: UIViewController, View {
     }
     
     private func makeActivityIndicator() -> UIActivityIndicatorView {
-        let spinner = UIActivityIndicatorView(style: .large)
+        let spinner = UIActivityIndicatorView(style: .whiteLarge)
         view.addSubview(spinner)
         spinner.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
         spinner.translatesAutoresizingMaskIntoConstraints = false
