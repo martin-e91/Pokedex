@@ -15,6 +15,15 @@
 		BA9F06B424ED18FF003A6A7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA9F06B324ED18FF003A6A7B /* Assets.xcassets */; };
 		BA9F06B724ED18FF003A6A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA9F06B524ED18FF003A6A7B /* LaunchScreen.storyboard */; };
 		BA9F06C224ED18FF003A6A7B /* PokedexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06C124ED18FF003A6A7B /* PokedexTests.swift */; };
+		BA9F06E224ED1A14003A6A7B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06E124ED1A14003A6A7B /* View.swift */; };
+		BA9F06E424ED1A2A003A6A7B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06E324ED1A2A003A6A7B /* BaseViewController.swift */; };
+		BA9F06E624ED1A37003A6A7B /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06E524ED1A37003A6A7B /* BasePresenter.swift */; };
+		BA9F06E824ED1A45003A6A7B /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06E724ED1A45003A6A7B /* BaseCoordinator.swift */; };
+		BA9F06EA24ED1A50003A6A7B /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06E924ED1A50003A6A7B /* BaseView.swift */; };
+		BA9F06EC24ED1A5C003A6A7B /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06EB24ED1A5C003A6A7B /* Presenter.swift */; };
+		BA9F06EE24ED1A67003A6A7B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06ED24ED1A67003A6A7B /* Coordinator.swift */; };
+		BA9F06F024ED1A71003A6A7B /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06EF24ED1A71003A6A7B /* Navigator.swift */; };
+		BA9F06F424ED1AAD003A6A7B /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06F324ED1AAD003A6A7B /* NibLoadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +49,15 @@
 		BA9F06BD24ED18FF003A6A7B /* PokedexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokedexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9F06C124ED18FF003A6A7B /* PokedexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexTests.swift; sourceTree = "<group>"; };
 		BA9F06C324ED18FF003A6A7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA9F06E124ED1A14003A6A7B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		BA9F06E324ED1A2A003A6A7B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		BA9F06E524ED1A37003A6A7B /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
+		BA9F06E724ED1A45003A6A7B /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		BA9F06E924ED1A50003A6A7B /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		BA9F06EB24ED1A5C003A6A7B /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		BA9F06ED24ED1A67003A6A7B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		BA9F06EF24ED1A71003A6A7B /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		BA9F06F324ED1AAD003A6A7B /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +99,7 @@
 		BA9F06A624ED18FC003A6A7B /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				BA9F06CC24ED19C2003A6A7B /* Source */,
 				BA9F06A724ED18FC003A6A7B /* AppDelegate.swift */,
 				BA9F06A924ED18FC003A6A7B /* SceneDelegate.swift */,
 				BA9F06AB24ED18FC003A6A7B /* ViewController.swift */,
@@ -100,6 +119,46 @@
 				BA9F06C324ED18FF003A6A7B /* Info.plist */,
 			);
 			path = PokedexTests;
+			sourceTree = "<group>";
+		};
+		BA9F06CC24ED19C2003A6A7B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				BA9F06F224ED1AA3003A6A7B /* Protocols */,
+				BA9F06CF24ED19DC003A6A7B /* Architecture */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		BA9F06CF24ED19DC003A6A7B /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				BA9F06E124ED1A14003A6A7B /* View.swift */,
+				BA9F06D124ED19DC003A6A7B /* BaseClasses */,
+				BA9F06EB24ED1A5C003A6A7B /* Presenter.swift */,
+				BA9F06ED24ED1A67003A6A7B /* Coordinator.swift */,
+				BA9F06EF24ED1A71003A6A7B /* Navigator.swift */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
+		BA9F06D124ED19DC003A6A7B /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				BA9F06E324ED1A2A003A6A7B /* BaseViewController.swift */,
+				BA9F06E524ED1A37003A6A7B /* BasePresenter.swift */,
+				BA9F06E724ED1A45003A6A7B /* BaseCoordinator.swift */,
+				BA9F06E924ED1A50003A6A7B /* BaseView.swift */,
+			);
+			path = BaseClasses;
+			sourceTree = "<group>";
+		};
+		BA9F06F224ED1AA3003A6A7B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BA9F06F324ED1AAD003A6A7B /* NibLoadable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,9 +263,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA9F06B224ED18FC003A6A7B /* Pokedex.xcdatamodeld in Sources */,
+				BA9F06E624ED1A37003A6A7B /* BasePresenter.swift in Sources */,
 				BA9F06AC24ED18FC003A6A7B /* ViewController.swift in Sources */,
+				BA9F06EA24ED1A50003A6A7B /* BaseView.swift in Sources */,
+				BA9F06E424ED1A2A003A6A7B /* BaseViewController.swift in Sources */,
+				BA9F06F024ED1A71003A6A7B /* Navigator.swift in Sources */,
+				BA9F06EC24ED1A5C003A6A7B /* Presenter.swift in Sources */,
 				BA9F06A824ED18FC003A6A7B /* AppDelegate.swift in Sources */,
+				BA9F06EE24ED1A67003A6A7B /* Coordinator.swift in Sources */,
+				BA9F06E824ED1A45003A6A7B /* BaseCoordinator.swift in Sources */,
 				BA9F06AA24ED18FC003A6A7B /* SceneDelegate.swift in Sources */,
+				BA9F06F424ED1AAD003A6A7B /* NibLoadable.swift in Sources */,
+				BA9F06E224ED1A14003A6A7B /* View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
