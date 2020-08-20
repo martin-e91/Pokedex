@@ -14,6 +14,9 @@
 		BA32047F24ED7818009921A4 /* UICollectionViewCell+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */; };
 		BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */; };
 		BA6A2ACA24EEB6AD004B1800 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2AC924EEB6AD004B1800 /* Constants.swift */; };
+		BA6A2ACE24EEC90E004B1800 /* TitledImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2ACC24EEC90E004B1800 /* TitledImageCell.swift */; };
+		BA6A2ACF24EEC90E004B1800 /* TitledImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6A2ACD24EEC90E004B1800 /* TitledImageCell.xib */; };
+		BA6A2AD124EECBB1004B1800 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2AD024EECBB1004B1800 /* Assets.swift */; };
 		BA9F06A824ED18FC003A6A7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06A724ED18FC003A6A7B /* AppDelegate.swift */; };
 		BA9F06B424ED18FF003A6A7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA9F06B324ED18FF003A6A7B /* Assets.xcassets */; };
 		BA9F06B724ED18FF003A6A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA9F06B524ED18FF003A6A7B /* LaunchScreen.storyboard */; };
@@ -48,6 +51,9 @@
 		BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Register.swift"; sourceTree = "<group>"; };
 		BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
 		BA6A2AC924EEB6AD004B1800 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BA6A2ACC24EEC90E004B1800 /* TitledImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledImageCell.swift; sourceTree = "<group>"; };
+		BA6A2ACD24EEC90E004B1800 /* TitledImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitledImageCell.xib; sourceTree = "<group>"; };
+		BA6A2AD024EECBB1004B1800 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		BA9F06A424ED18FC003A6A7B /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9F06A724ED18FC003A6A7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA9F06B324ED18FF003A6A7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,8 +105,18 @@
 			isa = PBXGroup;
 			children = (
 				BA6A2AC924EEB6AD004B1800 /* Constants.swift */,
+				BA6A2AD024EECBB1004B1800 /* Assets.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		BA6A2ACB24EEC8DB004B1800 /* TitledImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				BA6A2ACC24EEC90E004B1800 /* TitledImageCell.swift */,
+				BA6A2ACD24EEC90E004B1800 /* TitledImageCell.xib */,
+			);
+			path = TitledImageCell;
 			sourceTree = "<group>";
 		};
 		BA9F069B24ED18FC003A6A7B = {
@@ -214,6 +230,7 @@
 		BA9F06FA24ED2D26003A6A7B /* Pokemon List */ = {
 			isa = PBXGroup;
 			children = (
+				BA6A2ACB24EEC8DB004B1800 /* TitledImageCell */,
 				BA32046F24ED339A009921A4 /* PokemonListPresenter.swift */,
 				BA32047A24ED383F009921A4 /* PokemonListViewController.swift */,
 				BA32047B24ED383F009921A4 /* PokemonListViewController.xib */,
@@ -303,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA32047D24ED383F009921A4 /* PokemonListViewController.xib in Resources */,
+				BA6A2ACF24EEC90E004B1800 /* TitledImageCell.xib in Resources */,
 				BA9F06B724ED18FF003A6A7B /* LaunchScreen.storyboard in Resources */,
 				BA9F06B424ED18FF003A6A7B /* Assets.xcassets in Resources */,
 			);
@@ -329,9 +347,11 @@
 				BA9F06EA24ED1A50003A6A7B /* BaseView.swift in Sources */,
 				BA32047324ED3563009921A4 /* Coordinator+Transition.swift in Sources */,
 				BA9F06E424ED1A2A003A6A7B /* BaseViewController.swift in Sources */,
+				BA6A2ACE24EEC90E004B1800 /* TitledImageCell.swift in Sources */,
 				BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */,
 				BA9F06F024ED1A71003A6A7B /* Navigator.swift in Sources */,
 				BA9F06EC24ED1A5C003A6A7B /* Presenter.swift in Sources */,
+				BA6A2AD124EECBB1004B1800 /* Assets.swift in Sources */,
 				BA9F06A824ED18FC003A6A7B /* AppDelegate.swift in Sources */,
 				BA32047024ED339A009921A4 /* PokemonListPresenter.swift in Sources */,
 				BA9F06EE24ED1A67003A6A7B /* Coordinator.swift in Sources */,

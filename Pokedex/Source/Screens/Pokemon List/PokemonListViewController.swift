@@ -21,7 +21,7 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        UICollectionViewCell.registerClass(for: collectionView)
+        TitledImageCell.registerNib(for: collectionView)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -70,8 +70,11 @@ extension PokemonListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.reuseIdentifier, for: indexPath)
-        cell.contentView.backgroundColor = .systemBlue
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitledImageCell.reuseIdentifier, for: indexPath) as? TitledImageCell else {
+            return .init()
+        }
+        cell.title = "TITLE"
+        cell.image = Assets.pokemonImagePlaceholder.image
         return cell
     }
 }

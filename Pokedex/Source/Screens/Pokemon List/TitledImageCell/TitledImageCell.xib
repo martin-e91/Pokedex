@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TitledImageCell" id="gTV-IL-0wX" customClass="TitledImageCell" customModule="Pokedex" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="164"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="380" height="164"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="M6C-xm-tHs">
+                        <rect key="frame" x="8" y="34" width="96" height="96"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="M6C-xm-tHs" secondAttribute="height" id="CA7-V9-wyd"/>
+                            <constraint firstAttribute="width" constant="96" id="Q6E-Wq-4aG"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZD-bu-QBR">
+                        <rect key="frame" x="120" y="16" width="252" height="132"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="bZD-bu-QBR" secondAttribute="bottom" constant="16" id="7ca-Rz-Vip"/>
+                <constraint firstItem="bZD-bu-QBR" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="B3T-Au-mXg"/>
+                <constraint firstItem="M6C-xm-tHs" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Dds-Pf-q88"/>
+                <constraint firstItem="M6C-xm-tHs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="EKo-xV-YUD"/>
+                <constraint firstAttribute="trailing" secondItem="bZD-bu-QBR" secondAttribute="trailing" constant="8" id="QXo-ZK-5Cl"/>
+                <constraint firstItem="bZD-bu-QBR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="WdL-n2-gZo"/>
+                <constraint firstItem="bZD-bu-QBR" firstAttribute="leading" secondItem="M6C-xm-tHs" secondAttribute="trailing" constant="16" id="nrH-As-hXu"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="380" height="164"/>
+            <connections>
+                <outlet property="imageView" destination="M6C-xm-tHs" id="QKl-67-yv5"/>
+                <outlet property="titleLabel" destination="bZD-bu-QBR" id="5bk-64-pv4"/>
+            </connections>
+            <point key="canvasLocation" x="371.01449275362324" y="191.51785714285714"/>
+        </collectionViewCell>
+    </objects>
+</document>
