@@ -9,11 +9,71 @@
 import UIKit
 
 class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol> {
-
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemBlue
+        setupCollectionView()
     }
     
+    private func setupCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        UICollectionViewCell.registerClass(for: collectionView)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+}
+
+extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
+    
+    private var spacing: CGFloat { Constants.mediumSpacing }
+    private var insets: UIEdgeInsets { .init(top: spacing, left: spacing, bottom: spacing, right: spacing) }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        insets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        spacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        spacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let _ = collectionViewLayout as? UICollectionViewFlowLayout else {
+            return .zero
+        }
+        
+        let horizontalSpacing = (spacing * CGFloat(presenter.itemsPerRow - 1))
+        let horizontalSpace = collectionView.bounds.width - horizontalSpacing - (insets.left + insets.right)
+        let itemWidth = horizontalSpace / presenter.itemsPerRow
+        
+        let verticalSpace = collectionView.bounds.height - (spacing * 2) - (insets.top + insets.bottom)
+        let itemHeight = verticalSpace / presenter.itemsPerColumn
+        
+        return .init(width: itemWidth, height: itemHeight)
+    }
+}
+
+extension PokemonListViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        presenter.numberOfSections
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        presenter.numberOfItems
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.reuseIdentifier, for: indexPath)
+        cell.contentView.backgroundColor = .systemBlue
+        return cell
+    }
 }

@@ -11,6 +11,9 @@
 		BA32047324ED3563009921A4 /* Coordinator+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32047224ED3563009921A4 /* Coordinator+Transition.swift */; };
 		BA32047C24ED383F009921A4 /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32047A24ED383F009921A4 /* PokemonListViewController.swift */; };
 		BA32047D24ED383F009921A4 /* PokemonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA32047B24ED383F009921A4 /* PokemonListViewController.xib */; };
+		BA32047F24ED7818009921A4 /* UICollectionViewCell+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */; };
+		BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */; };
+		BA6A2ACA24EEB6AD004B1800 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2AC924EEB6AD004B1800 /* Constants.swift */; };
 		BA9F06A824ED18FC003A6A7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06A724ED18FC003A6A7B /* AppDelegate.swift */; };
 		BA9F06B424ED18FF003A6A7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA9F06B324ED18FF003A6A7B /* Assets.xcassets */; };
 		BA9F06B724ED18FF003A6A7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA9F06B524ED18FF003A6A7B /* LaunchScreen.storyboard */; };
@@ -42,6 +45,9 @@
 		BA32047224ED3563009921A4 /* Coordinator+Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+Transition.swift"; sourceTree = "<group>"; };
 		BA32047A24ED383F009921A4 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
 		BA32047B24ED383F009921A4 /* PokemonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonListViewController.xib; sourceTree = "<group>"; };
+		BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Register.swift"; sourceTree = "<group>"; };
+		BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
+		BA6A2AC924EEB6AD004B1800 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BA9F06A424ED18FC003A6A7B /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9F06A724ED18FC003A6A7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA9F06B324ED18FF003A6A7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,8 +90,17 @@
 			isa = PBXGroup;
 			children = (
 				BA32047224ED3563009921A4 /* Coordinator+Transition.swift */,
+				BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BA6A2AC824EEB6A3004B1800 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BA6A2AC924EEB6AD004B1800 /* Constants.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		BA9F069B24ED18FC003A6A7B = {
@@ -128,6 +143,7 @@
 		BA9F06CC24ED19C2003A6A7B /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BA6A2AC824EEB6A3004B1800 /* Common */,
 				BA32047124ED3556009921A4 /* Extensions */,
 				BA9F06F724ED2BA4003A6A7B /* Screens */,
 				BA9F06F224ED1AA3003A6A7B /* Protocols */,
@@ -163,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				BA9F06F324ED1AAD003A6A7B /* NibLoadable.swift */,
+				BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -306,10 +323,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA9F06F924ED2BB0003A6A7B /* AppCoordinator.swift in Sources */,
+				BA6A2ACA24EEB6AD004B1800 /* Constants.swift in Sources */,
 				BA9F06E624ED1A37003A6A7B /* BasePresenter.swift in Sources */,
+				BA32047F24ED7818009921A4 /* UICollectionViewCell+Register.swift in Sources */,
 				BA9F06EA24ED1A50003A6A7B /* BaseView.swift in Sources */,
 				BA32047324ED3563009921A4 /* Coordinator+Transition.swift in Sources */,
 				BA9F06E424ED1A2A003A6A7B /* BaseViewController.swift in Sources */,
+				BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */,
 				BA9F06F024ED1A71003A6A7B /* Navigator.swift in Sources */,
 				BA9F06EC24ED1A5C003A6A7B /* Presenter.swift in Sources */,
 				BA9F06A824ED18FC003A6A7B /* AppDelegate.swift in Sources */,
