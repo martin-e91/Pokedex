@@ -9,8 +9,8 @@
 import UIKit
 
 protocol PokemonListPresenterProtocol {
+    var screenTitle: String { get }
     var numberOfItems: Int { get }
-    var numberOfSections: Int { get }
     var itemsPerRow: CGFloat { get }
     var itemsPerColumn: CGFloat { get }
 }
@@ -20,8 +20,10 @@ final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCo
 }
 
 extension PokemonListPresenter: PokemonListPresenterProtocol {
+    var screenTitle: String { "Pokèmon List" }
+    
     var numberOfItems: Int { 10 }
-    var numberOfSections: Int { 1 }
+        
     var itemsPerRow: CGFloat {
         isIpad ? 3 : 1
     }

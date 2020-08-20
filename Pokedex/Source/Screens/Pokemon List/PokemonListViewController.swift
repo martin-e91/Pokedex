@@ -14,6 +14,7 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = presenter.screenTitle
         setupCollectionView()
     }
     
@@ -63,9 +64,6 @@ extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension PokemonListViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        presenter.numberOfSections
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         presenter.numberOfItems
