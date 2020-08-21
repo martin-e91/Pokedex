@@ -73,8 +73,10 @@ extension PokemonListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitledImageCell.reuseIdentifier, for: indexPath) as? TitledImageCell else {
             return .init()
         }
+        // TODO: Remove mock
         cell.title = "TITLE"
         cell.image = Assets.pokemonImagePlaceholder.image
+        cell.contentView.backgroundColor = .systemGreen
         return cell
     }
 }
