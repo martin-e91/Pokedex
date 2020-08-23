@@ -18,7 +18,17 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        let presenter = PokemonListPresenter(with: self)
+        let pokemonProvider: PokemonProvider
+        
+        do {
+            pokemonProvider = try injector.resolve()
+        } catch InjectorError.invalidType {
+            fatalError("Couldn't retrieve pokemon provider instance")
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
+        
+        let presenter = PokemonListPresenter(with: self, pokemonProvider: pokemonProvider)
         let view = PokemonListViewController(with: presenter)
         presenter.view = view
         show(view, with: .pushFirst(animated: false))

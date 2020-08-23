@@ -16,6 +16,17 @@ protocol PokemonListPresenterProtocol {
 }
 
 final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCoordinator> {
+    private let pokemonProvider: PokemonProvider
+    
+    required init(with coordinator: AppCoordinator, pokemonProvider: PokemonProvider) {
+        self.pokemonProvider = pokemonProvider
+        super.init(with: coordinator)
+    }
+    
+    @available(*, unavailable)
+    required public init(with coordinator: Nav) {
+        fatalError("init(with:) has not been implemented")
+    }
     
 }
 
