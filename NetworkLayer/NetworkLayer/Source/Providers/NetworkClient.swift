@@ -26,4 +26,12 @@ public final class NetworkClient: NetworkProvider {
         queue.addOperation(operation)
         return operation
     }
+    
+    @discardableResult
+    public func download(from urlString: String, completion: @escaping Completion<Data, NetworkError>) -> Operation {
+        let operation = DownloadOperation(session: session, urlString: urlString)
+        operation.completion = completion
+        queue.addOperation(operation)
+        return operation
+    }
 }

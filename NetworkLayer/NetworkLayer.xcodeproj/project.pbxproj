@@ -13,6 +13,7 @@
 		BA84E7F82454565200787DDC /* CompletionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84E7F72454565200787DDC /* CompletionOperation.swift */; };
 		BA84E7FA2454579900787DDC /* DataTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84E7F92454579900787DDC /* DataTaskOperation.swift */; };
 		BA84E7FD24545EC200787DDC /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84E7FC24545EC200787DDC /* NetworkClient.swift */; };
+		BAE9254F24F2BF7B0049C2ED /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9254E24F2BF7B0049C2ED /* DownloadOperation.swift */; };
 		BAEC165C24544D2C008BF59C /* NetworkLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEC165224544D2C008BF59C /* NetworkLayer.framework */; };
 		BAEC166124544D2C008BF59C /* NetworkLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEC166024544D2C008BF59C /* NetworkLayerTests.swift */; };
 		BAEC166324544D2C008BF59C /* NetworkLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = BAEC165524544D2C008BF59C /* NetworkLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +37,7 @@
 		BA84E7F72454565200787DDC /* CompletionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionOperation.swift; sourceTree = "<group>"; };
 		BA84E7F92454579900787DDC /* DataTaskOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskOperation.swift; sourceTree = "<group>"; };
 		BA84E7FC24545EC200787DDC /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		BAE9254E24F2BF7B0049C2ED /* DownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
 		BAEC165224544D2C008BF59C /* NetworkLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEC165524544D2C008BF59C /* NetworkLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkLayer.h; sourceTree = "<group>"; };
 		BAEC165624544D2C008BF59C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				BA84E7F5245451D300787DDC /* BaseOperation.swift */,
 				BA84E7F72454565200787DDC /* CompletionOperation.swift */,
 				BA84E7F92454579900787DDC /* DataTaskOperation.swift */,
+				BAE9254E24F2BF7B0049C2ED /* DownloadOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				BA84E7F82454565200787DDC /* CompletionOperation.swift in Sources */,
 				BAEC167424544D45008BF59C /* NetworkError.swift in Sources */,
 				BA84E7FD24545EC200787DDC /* NetworkClient.swift in Sources */,
+				BAE9254F24F2BF7B0049C2ED /* DownloadOperation.swift in Sources */,
 				BAEC167324544D45008BF59C /* NetworkRequest.swift in Sources */,
 				BA84E7F224544E8500787DDC /* Endpoint.swift in Sources */,
 				BAEC167224544D45008BF59C /* NetworkResponse.swift in Sources */,

@@ -62,8 +62,8 @@ public final class DataTaskOperation<T: Decodable>: CompletionOperation<T, Netwo
             print("Couldn't decode '\(T.self)': missing key '\(key.stringValue)' – \(context.debugDescription)")
         } catch DecodingError.valueNotFound(let type, let context) {
             print("Couldn't decode '\(T.self)': missing \(type) value – \(context.debugDescription)")
-        } catch DecodingError.dataCorrupted(_) {
-            print("Corrupted data")
+        } catch DecodingError.dataCorrupted(let context) {
+            print("Corrupted data \(context.debugDescription)")
         } catch let error {
             print("Couldn't decode '\(T.self)': \(error.localizedDescription)")
         }

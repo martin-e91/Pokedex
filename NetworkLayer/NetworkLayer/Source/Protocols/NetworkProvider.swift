@@ -18,4 +18,10 @@ public protocol NetworkProvider {
     @discardableResult
     func perform<T>(_ request: NetworkRequest, completion: @escaping Completion<T, NetworkError>) -> Operation where T : Decodable 
     
+    /// Downloads raw data from the given url.
+    /// - Parameters:
+    ///   - url: The endpoint for the network task.
+    ///   - completion: Completion block for handling result.
+    @discardableResult
+    func download(from urlString: String, completion: @escaping Completion<Data, NetworkError>) -> Operation
 }
