@@ -13,7 +13,7 @@ enum Api {
     private static var baseUrl: String { "https://pokeapi.co/api/v2/" }
     
     enum Pokemon: Endpoint {
-        case pokemon(offset: UInt = 20, limit: UInt = 20)
+        case pokemon(offset: Int, limit: Int)
         
         private var path: String {
             switch self {

@@ -18,10 +18,19 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
         setupCollectionView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.fetchData()
+    }
+    
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         TitledImageCell.registerNib(for: collectionView)
+    }
+    
+    override func updateState() {
+        collectionView.reloadData()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -73,10 +82,10 @@ extension PokemonListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitledImageCell.reuseIdentifier, for: indexPath) as? TitledImageCell else {
             return .init()
         }
-        // TODO: Remove mock
-        cell.title = "TITLE"
-        cell.image = Assets.pokemonImagePlaceholder.image
-        cell.contentView.backgroundColor = .systemGreen
+        let index = indexPath.row
+        cell.title = presenter.elementTitle(at: index)
+        cell.image = presenter.elementImage(at: index)
         return cell
     }
+    
 }

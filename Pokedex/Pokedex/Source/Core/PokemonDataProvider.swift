@@ -17,7 +17,7 @@ protocol PokemonProvider {
     ///   - startingIndex: The starting position for the paginated result.
     ///   - resultsPerPage: Number of expected results.
     ///   - completion: Completion block.
-    func getPokemonReferences(startingIndex: UInt, resultsPerPage: UInt, completion: @escaping PokemonReferenceCompletion)
+    func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion)
 }
 
 final class PokemonDataProvider {
@@ -25,7 +25,7 @@ final class PokemonDataProvider {
 }
 
 extension PokemonDataProvider: PokemonProvider {
-    func getPokemonReferences(startingIndex: UInt, resultsPerPage: UInt, completion: @escaping PokemonReferenceCompletion) {
+    func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion) {
         let request = NetworkRequest(method: .get,
                                      endpoint: Api.Pokemon.pokemon(offset: startingIndex, limit: resultsPerPage))
         networkClient.perform(request) { [weak self] (result: Result<PaginatedResult<PokemonReference>, NetworkError>) in

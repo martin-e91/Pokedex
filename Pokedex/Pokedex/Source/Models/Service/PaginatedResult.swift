@@ -14,10 +14,10 @@ struct PaginatedResult<T>: Decodable where T: Decodable {
     let count: Int
     
     /// The url string for the next page.
-    let next: String
+    let next: String?
     
     /// The url string for the previous page.
-    let previous: String
+    let previous: String?
     
     /// The set of results.
     let results: [T]
