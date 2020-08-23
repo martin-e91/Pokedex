@@ -52,9 +52,9 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
     var itemsPerColumn: CGFloat {
         switch UIDevice.current.orientation {
         case .landscapeLeft, .landscapeRight:
-            return isIpad ? 2 : 1
+            return isIpad ? 2 : 3
         default:
-            return isIpad ? 5 : 3
+            return isIpad ? 10 : 5
         }
     }
     
