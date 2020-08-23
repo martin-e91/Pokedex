@@ -38,6 +38,8 @@
 		BA9F06F424ED1AAD003A6A7B /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06F324ED1AAD003A6A7B /* NibLoadable.swift */; };
 		BA9F06F924ED2BB0003A6A7B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9F06F824ED2BB0003A6A7B /* AppCoordinator.swift */; };
 		BAE9253D24F27D370049C2ED /* PaginatedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9253C24F27D370049C2ED /* PaginatedResult.swift */; };
+		BAE9253F24F281410049C2ED /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9253E24F281410049C2ED /* Injector.swift */; };
+		BAE9254124F2849F0049C2ED /* ConcreteInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9254024F2849F0049C2ED /* ConcreteInjector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		BA9F06F324ED1AAD003A6A7B /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		BA9F06F824ED2BB0003A6A7B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		BAE9253C24F27D370049C2ED /* PaginatedResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResult.swift; sourceTree = "<group>"; };
+		BAE9253E24F281410049C2ED /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
+		BAE9254024F2849F0049C2ED /* ConcreteInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteInjector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,8 @@
 			children = (
 				BA6A2AC924EEB6AD004B1800 /* Constants.swift */,
 				BA6A2AD024EECBB1004B1800 /* Assets.swift */,
+				BAE9253E24F281410049C2ED /* Injector.swift */,
+				BAE9254024F2849F0049C2ED /* ConcreteInjector.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -420,8 +426,10 @@
 				BA7D97A724F0288F00744355 /* PokemonDataProvider.swift in Sources */,
 				BA9F06E624ED1A37003A6A7B /* BasePresenter.swift in Sources */,
 				BA32047F24ED7818009921A4 /* UICollectionViewCell+Register.swift in Sources */,
+				BAE9254124F2849F0049C2ED /* ConcreteInjector.swift in Sources */,
 				BA9F06EA24ED1A50003A6A7B /* BaseView.swift in Sources */,
 				BA32047324ED3563009921A4 /* Coordinator+Transition.swift in Sources */,
+				BAE9253F24F281410049C2ED /* Injector.swift in Sources */,
 				BA9F06E424ED1A2A003A6A7B /* BaseViewController.swift in Sources */,
 				BA6A2ACE24EEC90E004B1800 /* TitledImageCell.swift in Sources */,
 				BA7D97AC24F02C0300744355 /* PokemonReference.swift in Sources */,

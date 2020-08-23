@@ -9,10 +9,11 @@
 import UIKit
 
 final class AppCoordinator: BaseCoordinator {
+    private let injector: Injector
     
-    override init(with navigationController: UINavigationController) {
+    required init(with navigationController: UINavigationController, injector: Injector) {
+        self.injector = injector
         super.init(with: navigationController)
-        
         navigationController.navigationBar.isTranslucent = false
     }
     

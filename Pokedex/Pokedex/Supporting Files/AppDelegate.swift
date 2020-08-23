@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let navController = UINavigationController()
-        
-        appCoordinator = AppCoordinator(with: navController)
+
+        let injector = makeInjector()
+        appCoordinator = AppCoordinator(with: navController, injector: injector)
         appCoordinator.start()
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -26,6 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    private func makeInjector() -> Injector {
+        let injector = ConcreteInjector()
+        injector.register(type: PokemonProvider.self, instance: PokemonDataProvider())
+        return injector
     }
     
 }
