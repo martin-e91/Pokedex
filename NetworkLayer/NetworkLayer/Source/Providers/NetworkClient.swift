@@ -19,6 +19,7 @@ public final class NetworkClient: NetworkProvider {
         self.session = session
     }
     
+    @discardableResult
     public func perform<T>(_ request: NetworkRequest, completion: @escaping Completion<T, NetworkError>) -> Operation where T : Decodable {
         let operation = DataTaskOperation<T>(session: session, request: request)
         operation.completion = completion
