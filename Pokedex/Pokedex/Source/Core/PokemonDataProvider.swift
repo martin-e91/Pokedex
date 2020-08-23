@@ -34,7 +34,7 @@ final class PokemonDataProvider {
 extension PokemonDataProvider: PokemonProvider {
     func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion) {
         let request = NetworkRequest(method: .get,
-                                     endpoint: Api.Pokemon.pokemon(offset: startingIndex, limit: resultsPerPage))
+                                     endpoint: Api.Pokemon.pokemon(offset: startingIndex, limit: resultsPerPage).makeEndpoint())
         networkClient.perform(request) { [weak self] (result: Result<PaginatedResult<PokemonReference>, NetworkError>) in
             guard let self = self else { return }
             switch result {
@@ -47,9 +47,7 @@ extension PokemonDataProvider: PokemonProvider {
     }
     
     func getPokemonDetails(from urlString: String, completion: @escaping PokemonDetailsCompletion) {
-        let endpoint = ConcreteEndpoint(urlString: urlString)
-        let request = NetworkRequest(method: .get,
-                                     endpoint: endpoint)
+        let request = NetworkRequest(urlString: urlString)
         networkClient.perform(request) { [weak self] (result: Result<PokemonDetails, NetworkError>) in
             guard let self = self else { return }
             switch result {

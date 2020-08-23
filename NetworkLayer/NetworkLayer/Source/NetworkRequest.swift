@@ -22,6 +22,13 @@ public struct NetworkRequest {
         self.endpoint = endpoint
     }
     
+    /// Creates a simple get request for the given urlString.
+    /// - Parameter urlString: The url string for this request.
+    public init(urlString: String) {
+        let endpoint = ConcreteEndpoint(urlString: urlString)
+        self.init(method: .get, endpoint: endpoint)
+    }
+    
     /// Generates an `URLRequest` using this network request's properties.
     /// - Throws: An error while building the `URL` object.
     /// - Returns: The `URLRequest` associated with this network request.

@@ -12,8 +12,8 @@ import NetworkLayer
 enum Api {
     private static var baseUrl: String { "https://pokeapi.co/api/v2/" }
     
-    enum Pokemon: Endpoint {
-        case pokemon(offset: Int, limit: Int)
+    enum Pokemon {
+        case pokemon(offset: Int? = nil, limit: Int? = nil)
         
         private var path: String {
             switch self {
@@ -22,17 +22,22 @@ enum Api {
             }
         }
         
-        func makeURL() throws -> URL {
+        func makeEndpoint() -> Endpoint {
             switch self {
             case .pokemon(let offset, let limit):
                 let urlString = "\(Api.baseUrl)\(path)"
-                let endpoint = ConcreteEndpoint(urlString: urlString, queryParameters: [
-                    .init(name: "offset", value: String(offset)),
-                    .init(name: "limit", value: String(limit)),
-                ])
-                return try endpoint.makeURL()
+                var queryItems: [URLQueryItem] = []
+                if let offset = offset, let limit = limit {
+                    queryItems = [
+                        .init(name: "offset", value: String(offset)),
+                        .init(name: "limit", value: String(limit)),
+                    ]
+                }
+                let endpoint = ConcreteEndpoint(urlString: urlString, queryParameters: queryItems)
+                return endpoint
             }
         }
+        
     }
     
 }

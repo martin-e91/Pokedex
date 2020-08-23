@@ -44,7 +44,6 @@
 		BAE9254B24F2BB550049C2ED /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9254A24F2BB550049C2ED /* Pokemon.swift */; };
 		BAE9254D24F2BD890049C2ED /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9254C24F2BD890049C2ED /* Downloader.swift */; };
 		BAE9255124F2C8CF0049C2ED /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9255024F2C8CF0049C2ED /* PokemonDetails.swift */; };
-		BAE9255324F2D5D50049C2ED /* ConcreteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9255224F2D5D50049C2ED /* ConcreteEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +111,6 @@
 		BAE9254A24F2BB550049C2ED /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		BAE9254C24F2BD890049C2ED /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		BAE9255024F2C8CF0049C2ED /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
-		BAE9255224F2D5D50049C2ED /* ConcreteEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				BA7D97A124F0198A00744355 /* Api.swift */,
-				BAE9255224F2D5D50049C2ED /* ConcreteEndpoint.swift */,
 				BA7D97A624F0288F00744355 /* PokemonDataProvider.swift */,
 				BAE9254C24F2BD890049C2ED /* Downloader.swift */,
 			);
@@ -447,7 +444,6 @@
 				BAE9253F24F281410049C2ED /* Injector.swift in Sources */,
 				BA9F06E424ED1A2A003A6A7B /* BaseViewController.swift in Sources */,
 				BA6A2ACE24EEC90E004B1800 /* TitledImageCell.swift in Sources */,
-				BAE9255324F2D5D50049C2ED /* ConcreteEndpoint.swift in Sources */,
 				BA7D97AC24F02C0300744355 /* PokemonReference.swift in Sources */,
 				BAE9254924F2B2890049C2ED /* TitledImageCellViewModel.swift in Sources */,
 				BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */,
