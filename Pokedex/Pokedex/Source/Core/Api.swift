@@ -36,18 +36,3 @@ enum Api {
     }
     
 }
-
-private struct ConcreteEndpoint: Endpoint {
-    let urlString: String
-    let queryParameters: [URLQueryItem]
-    
-    func makeURL() throws -> URL {
-        var components = URLComponents(string: urlString)
-        components?.queryItems = queryParameters
-        
-        guard let url = components?.url else {
-            throw NetworkError.invalidURL
-        }
-        return url
-    }
-}

@@ -11,6 +11,7 @@ import UIKit
 class TitledImageCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private var viewModel: TitledImageCellViewModelProtocol?
     
@@ -21,9 +22,22 @@ class TitledImageCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         self.viewModel?.prepareForReuse()
+        self.updateData()
     }
 
+    private func updateData() {
+        self.titleLabel.text = self.viewModel?.title
+        self.imageView.image = self.viewModel?.image
+    }
+    
     func bind(to viewModel: TitledImageCellViewModelProtocol) {
         self.viewModel = viewModel
+        
+        activityIndicator.startAnimating()
+        viewModel.fetchData { [weak self] in
+            guard let self = self else { return }
+            self.activityIndicator.stopAnimating()
+            self.updateData()
+        }
     }
 }

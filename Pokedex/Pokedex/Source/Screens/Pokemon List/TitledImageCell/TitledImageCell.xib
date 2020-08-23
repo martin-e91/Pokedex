@@ -30,6 +30,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="kHQ-BF-JXT">
+                        <rect key="frame" x="32" y="58" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="K9M-HN-SEH"/>
+                            <constraint firstAttribute="width" constant="48" id="VKe-7h-3PA"/>
+                        </constraints>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <constraints>
@@ -37,13 +44,16 @@
                 <constraint firstItem="bZD-bu-QBR" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="B3T-Au-mXg"/>
                 <constraint firstItem="M6C-xm-tHs" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Dds-Pf-q88"/>
                 <constraint firstItem="M6C-xm-tHs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="EKo-xV-YUD"/>
+                <constraint firstItem="kHQ-BF-JXT" firstAttribute="centerX" secondItem="M6C-xm-tHs" secondAttribute="centerX" id="G6T-CE-4rR"/>
                 <constraint firstAttribute="trailing" secondItem="bZD-bu-QBR" secondAttribute="trailing" constant="8" id="QXo-ZK-5Cl"/>
                 <constraint firstItem="bZD-bu-QBR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="WdL-n2-gZo"/>
                 <constraint firstItem="bZD-bu-QBR" firstAttribute="leading" secondItem="M6C-xm-tHs" secondAttribute="trailing" constant="16" id="nrH-As-hXu"/>
+                <constraint firstItem="kHQ-BF-JXT" firstAttribute="centerY" secondItem="M6C-xm-tHs" secondAttribute="centerY" id="yAq-v0-V9w"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="380" height="164"/>
             <connections>
+                <outlet property="activityIndicator" destination="kHQ-BF-JXT" id="eUe-eC-cXv"/>
                 <outlet property="imageView" destination="M6C-xm-tHs" id="QKl-67-yv5"/>
                 <outlet property="titleLabel" destination="bZD-bu-QBR" id="5bk-64-pv4"/>
             </connections>

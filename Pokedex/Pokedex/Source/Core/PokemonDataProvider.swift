@@ -9,8 +9,9 @@
 import Foundation
 import NetworkLayer
 
-protocol PokemonProvider {
+protocol PokemonProvider: Downloader {
     typealias PokemonReferenceCompletion = (Result<PaginatedResult<PokemonReference>, Error>) -> Void
+    typealias PokemonDetailsCompletion = (Result<PokemonDetails, Error>) -> Void
     
     /// Retrieves pokemon references.
     /// - Parameters:
@@ -18,6 +19,12 @@ protocol PokemonProvider {
     ///   - resultsPerPage: Number of expected results.
     ///   - completion: Completion block.
     func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion)
+    
+    /// Retrieves details for the pokemon with the given id.
+    /// - Parameters:
+    ///   - id: Id of the desired pokemon.
+    ///   - completion: Completion block.
+    func getPokemonDetails(from urlString: String, completion: @escaping PokemonDetailsCompletion)
 }
 
 final class PokemonDataProvider {
@@ -33,6 +40,33 @@ extension PokemonDataProvider: PokemonProvider {
             switch result {
             case .success(let references):
                 completion(.success(references))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getPokemonDetails(from urlString: String, completion: @escaping PokemonDetailsCompletion) {
+        let endpoint = ConcreteEndpoint(urlString: urlString)
+        let request = NetworkRequest(method: .get,
+                                     endpoint: endpoint)
+        networkClient.perform(request) { [weak self] (result: Result<PokemonDetails, NetworkError>) in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let details):
+                completion(.success(details))
+            }
+        }
+    }
+
+    func download(from urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        networkClient.download(from: urlString) { [weak self] (result: Result<Data, NetworkError>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let data):
+                completion(.success(data))
             case .failure(let error):
                 completion(.failure(error))
             }

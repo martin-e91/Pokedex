@@ -9,6 +9,10 @@
 import Foundation
 
 struct PokemonReference: Decodable {
+    
+    /// This pokemon's name.
     let name: String
+    
+    /// Url for retrieving this pokemon's details.
     let url: String
 }

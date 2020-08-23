@@ -9,8 +9,12 @@
 import UIKit
 
 enum Assets: String {
-    var image: UIImage? {
-        return UIImage(named: rawValue)
+    var image: UIImage {
+        guard let image = UIImage(named: rawValue) else {
+            print("Couldn't find image named \(rawValue). Using empty image instead.")
+            return UIImage()
+        }
+        return image
     }
     
     case pokemonImagePlaceholder = "pokemon-placeholder"
