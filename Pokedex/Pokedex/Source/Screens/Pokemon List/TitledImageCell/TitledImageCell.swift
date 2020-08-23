@@ -12,15 +12,7 @@ class TitledImageCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     
-    var image: UIImage? {
-        get { imageView.image }
-        set { imageView.image = newValue }
-    }
-    
-    var title: String? {
-        get { titleLabel.text }
-        set { titleLabel.text = newValue }
-    }
+    private var viewModel: TitledImageCellViewModelProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,8 +20,10 @@ class TitledImageCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        image = Assets.pokemonImagePlaceholder.image
-        title = nil
+        self.viewModel?.prepareForReuse()
     }
 
+    func bind(to viewModel: TitledImageCellViewModelProtocol) {
+        self.viewModel = viewModel
+    }
 }

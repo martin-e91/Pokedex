@@ -14,13 +14,11 @@ protocol PokemonListPresenterProtocol {
     var itemsPerRow: CGFloat { get }
     var itemsPerColumn: CGFloat { get }
     
-    /// Returns the title for the element at the given position.
-    /// - Parameter index: The position of the element.
-    func elementTitle(at index: Int) -> String?
-    
-    /// Returns the image for the element at the given position.
-    /// - Parameter index: The position of the element.
-    func elementImage(at index: Int) -> UIImage?
+    /// Setups the cell at the given indexPath.
+    /// - Parameters:
+    ///   - cell: The cell to be configured.
+    ///   - indexPath: The indexPath for the cell.
+    func setup(cell: TitledImageCell, at indexPath: IndexPath)
     
     /// Asks the presenter to fetch data.
     func fetchData()
@@ -71,15 +69,12 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
         }
     }
     
-    func elementTitle(at index: Int) -> String? {
-        guard index < pokemonReferences.count else { return nil }
-        return pokemonReferences[index].name.capitalized
-    }
-    
-    func elementImage(at index: Int) -> UIImage? {
-        guard index < pokemonReferences.count else { return nil }
-        // TODO: Download image
-        return Assets.pokemonImagePlaceholder.image
+    func setup(cell: TitledImageCell, at indexPath: IndexPath) {
+        let index = indexPath.row
+        guard index < pokemonReferences.count else { return }
+        let reference = pokemonReferences[index]
+        let viewModel = TitledImageCellViewModel(model: reference, provider: pokemonProvider)
+        cell.bind(to: viewModel)
     }
     
     func fetchData() {

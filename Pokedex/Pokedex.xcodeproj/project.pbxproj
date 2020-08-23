@@ -40,6 +40,7 @@
 		BAE9253D24F27D370049C2ED /* PaginatedResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9253C24F27D370049C2ED /* PaginatedResult.swift */; };
 		BAE9253F24F281410049C2ED /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9253E24F281410049C2ED /* Injector.swift */; };
 		BAE9254124F2849F0049C2ED /* ConcreteInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9254024F2849F0049C2ED /* ConcreteInjector.swift */; };
+		BAE9254924F2B2890049C2ED /* TitledImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE9254824F2B2890049C2ED /* TitledImageCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		BAE9253C24F27D370049C2ED /* PaginatedResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResult.swift; sourceTree = "<group>"; };
 		BAE9253E24F281410049C2ED /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		BAE9254024F2849F0049C2ED /* ConcreteInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteInjector.swift; sourceTree = "<group>"; };
+		BAE9254824F2B2890049C2ED /* TitledImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledImageCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			children = (
 				BA6A2ACC24EEC90E004B1800 /* TitledImageCell.swift */,
 				BA6A2ACD24EEC90E004B1800 /* TitledImageCell.xib */,
+				BAE9254824F2B2890049C2ED /* TitledImageCellViewModel.swift */,
 			);
 			path = TitledImageCell;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				BA9F06E424ED1A2A003A6A7B /* BaseViewController.swift in Sources */,
 				BA6A2ACE24EEC90E004B1800 /* TitledImageCell.swift in Sources */,
 				BA7D97AC24F02C0300744355 /* PokemonReference.swift in Sources */,
+				BAE9254924F2B2890049C2ED /* TitledImageCellViewModel.swift in Sources */,
 				BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */,
 				BA9F06F024ED1A71003A6A7B /* Navigator.swift in Sources */,
 				BA9F06EC24ED1A5C003A6A7B /* Presenter.swift in Sources */,

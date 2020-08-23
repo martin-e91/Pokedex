@@ -82,9 +82,7 @@ extension PokemonListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitledImageCell.reuseIdentifier, for: indexPath) as? TitledImageCell else {
             return .init()
         }
-        let index = indexPath.row
-        cell.title = presenter.elementTitle(at: index)
-        cell.image = presenter.elementImage(at: index)
+        presenter.setup(cell: cell, at: indexPath)
         return cell
     }
     
