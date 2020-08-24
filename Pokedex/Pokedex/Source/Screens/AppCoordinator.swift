@@ -39,11 +39,17 @@ final class AppCoordinator: BaseCoordinator {
 extension AppCoordinator: Navigator {
     
     enum Destinations {
-        case pokemonList
+        case details(pokemonDetails: PokemonDetails)
     }
     
     func navigate(to destination: AppCoordinator.Destinations) {
-        
+        switch destination {
+        case .details(let pokemonDetails):
+            let presenter = PokemonDetailsPresenter(with: self, pokemonDetails: pokemonDetails)
+            let view = PokemonDetailsViewController(with: presenter)
+            presenter.view = view
+            show(view, with: .push(animated: true))
+        }
     }
     
 }
