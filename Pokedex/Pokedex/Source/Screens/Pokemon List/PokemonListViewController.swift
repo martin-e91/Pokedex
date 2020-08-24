@@ -20,8 +20,8 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
         setupEmptyDataLabel()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter.fetchData(from: 0)
     }
     
@@ -29,6 +29,15 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
         collectionView.dataSource = self
         collectionView.delegate = self
         TitledImageCell.registerNib(for: collectionView)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didDragDownCollectionView), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    @objc
+    private func didDragDownCollectionView() {
+        presenter.fetchData(from: 0)
+        collectionView.refreshControl?.endRefreshing()
     }
     
     private func setupEmptyDataLabel() {
