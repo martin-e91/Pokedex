@@ -20,7 +20,7 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter.fetchData()
+        presenter.fetchData(from: 0)
     }
     
     private func setupCollectionView() {
@@ -86,4 +86,8 @@ extension PokemonListViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        presenter.willDisplayCell(at: indexPath)
+    }
 }
+

@@ -17,12 +17,15 @@ class TitledImageCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        titleLabel.text = nil
+        imageView.image = nil
+        activityIndicator.hidesWhenStopped = true
     }
     
     override func prepareForReuse() {
         self.viewModel?.prepareForReuse()
-        self.updateData()
+        self.titleLabel.text = nil
+        self.imageView.image = nil
     }
 
     private func updateData() {

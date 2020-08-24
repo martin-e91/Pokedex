@@ -20,13 +20,26 @@ protocol PokemonListPresenterProtocol {
     ///   - indexPath: The indexPath for the cell.
     func setup(cell: TitledImageCell, at indexPath: IndexPath)
     
-    /// Asks the presenter to fetch data.
-    func fetchData()
+    func willDisplayCell(at indexPath: IndexPath)
+    
+    /// Asks the presenter to fetch data starting from the given index.
+    /// - Parameter startingIndex: starting position of the data to be fetched.
+    func fetchData(from startingIndex: Int)
 }
 
 final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCoordinator> {
     private let pokemonProvider: PokemonProvider
+    private let cache = Cache<Int, PokemonReference>()
     private var pokemonReferences: [PokemonReference] = []
+    private var lastResults: PaginatedResult<PokemonReference> = .init(count: 0, next: nil, previous: nil, results: []) {
+        didSet {
+            pokemonReferences.append(contentsOf: lastResults.results)
+            pokemonReferences.removeDuplicates()
+            for (index, reference) in pokemonReferences.enumerated() {
+                cache.insert(reference, forKey: index)
+            }
+        }
+    }
     
     required init(with coordinator: AppCoordinator, pokemonProvider: PokemonProvider) {
         self.pokemonProvider = pokemonProvider
@@ -44,7 +57,7 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
     var screenTitle: String { "Pokèmon List" }
     
     var numberOfItems: Int { pokemonReferences.count }
-        
+    
     var itemsPerRow: CGFloat {
         isIpad ? 3 : 1
     }
@@ -72,14 +85,27 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
     func setup(cell: TitledImageCell, at indexPath: IndexPath) {
         let index = indexPath.row
         guard index < pokemonReferences.count else { return }
-        let reference = pokemonReferences[index]
+        
+        let reference: PokemonReference
+        if let cached = cache.value(forKey: index) {
+            reference = cached
+        } else {
+            reference = pokemonReferences[index]
+        }
+        
         let viewModel = TitledImageCellViewModel(model: reference, provider: pokemonProvider)
         cell.bind(to: viewModel)
     }
     
-    func fetchData() {
+    func willDisplayCell(at indexPath: IndexPath) {
+        guard indexPath.row == (numberOfItems - 5),
+            numberOfItems < lastResults.count else { return }
+        fetchData(from: indexPath.row)
+    }
+    
+    func fetchData(from startingIndex: Int) {
         view.showHud()
-        pokemonProvider.getPokemonReferences(startingIndex: 0, resultsPerPage: 30) { [weak self] result in
+        pokemonProvider.getPokemonReferences(startingIndex: startingIndex, resultsPerPage: 30) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.view.hideHud()
@@ -87,8 +113,10 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
                 case .failure(let error):
                     print(error.localizedDescription)
                 case .success(let results):
-                    self.pokemonReferences = results.results
-                    self.view.updateState()
+                    DispatchQueue.main.async {
+                        self.lastResults = results
+                        self.view.updateState()
+                    }
                 }
             }
         }
