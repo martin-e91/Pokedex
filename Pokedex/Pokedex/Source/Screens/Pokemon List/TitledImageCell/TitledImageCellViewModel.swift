@@ -56,10 +56,7 @@ extension TitledImageCellViewModel: TitledImageCellViewModelProtocol {
                         imageData = Assets.pokemonImagePlaceholder.image.pngData() ?? Data()
                     }
                     self?.pokemon = Pokemon(from: details, with: imageData)
-                    
-                    DispatchQueue.main.async {
-                        updateCompletion()
-                    }
+                    updateCompletion()
                 }
             }
         }

@@ -16,12 +16,16 @@ open class CompletionOperation<T, E>: BaseOperation where E: Error {
     public var completion: Completion<T, E>?
     
     public func finish(with success: T) {
-        completion?(.success(success))
+        DispatchQueue.main.async {
+            self.completion?(.success(success))
+        }
         state = .isFinished
     }
     
     public func finish(with error: E) {
-        completion?(.failure(error))
+        DispatchQueue.main.async {
+            self.completion?(.failure(error))
+        }
         state = .isFinished
     }
 }

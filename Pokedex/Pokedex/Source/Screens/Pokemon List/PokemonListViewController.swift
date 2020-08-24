@@ -87,6 +87,10 @@ extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
         
         return .init(width: itemWidth, height: itemHeight)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.didSelectCell(at: indexPath)
+    }
 }
 
 extension PokemonListViewController: UICollectionViewDataSource {

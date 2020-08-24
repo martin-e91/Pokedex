@@ -20,7 +20,13 @@ protocol PokemonListPresenterProtocol {
     ///   - indexPath: The indexPath for the cell.
     func setup(cell: TitledImageCell, at indexPath: IndexPath)
     
+    /// Tells the presenter that the cell at the given indexPath is about to be displayed.
+    /// - Parameter indexPath: the cell's indexPath.
     func willDisplayCell(at indexPath: IndexPath)
+    
+    /// Tells the presenter that the cell at the given indexPath it's been selected.
+    /// - Parameter indexPath: the cell's indexPath.
+    func didSelectCell(at indexPath: IndexPath)
     
     /// Asks the presenter to fetch data starting from the given index.
     /// - Parameter startingIndex: starting position of the data to be fetched.
@@ -83,16 +89,7 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
     }
     
     func setup(cell: TitledImageCell, at indexPath: IndexPath) {
-        let index = indexPath.row
-        guard index < pokemonReferences.count else { return }
-        
-        let reference: PokemonReference
-        if let cached = cache.value(forKey: index) {
-            reference = cached
-        } else {
-            reference = pokemonReferences[index]
-        }
-        
+        guard let reference = getReference(at: indexPath.row) else { return }
         let viewModel = TitledImageCellViewModel(model: reference, provider: pokemonProvider)
         cell.bind(to: viewModel)
     }
@@ -103,22 +100,35 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
         fetchData(from: indexPath.row)
     }
     
+    private func getReference(at index: Int) -> PokemonReference? {
+        if let cached = cache.value(forKey: index) {
+            return cached
+        } else {
+            guard index < pokemonReferences.count else { return nil }
+            return pokemonReferences[index]
+        }
+    }
+    
+    func didSelectCell(at indexPath: IndexPath) {
+        guard let reference = getReference(at: indexPath.row) else { return }
+        pokemonProvider.getPokemonDetails(from: reference.url) { [weak self] (result: Result<PokemonDetails, Error>) in
+            guard let self = self else { return }
+        }
+    }
+    
     func fetchData(from startingIndex: Int) {
         view.showHud()
         pokemonProvider.getPokemonReferences(startingIndex: startingIndex, resultsPerPage: 30) { [weak self] result in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.view.hideHud()
-                switch result {
-                case .failure(let error):
-                    print(error.localizedDescription)
-                case .success(let results):
-                    DispatchQueue.main.async {
-                        self.lastResults = results
-                        self.view.updateState()
-                    }
-                }
+            self.view.hideHud()
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let results):
+                self.lastResults = results
+                self.view.updateState()
             }
+            
         }
     }
     
