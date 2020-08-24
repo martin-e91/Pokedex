@@ -1,0 +1,10 @@
+/* 
+  Strings.strings
+  Pokedex
+
+  Created by Martin Essuman on 24/08/2020.
+  Copyright © 2020 Martino Godswill Essuman. All rights reserved.
+*/
+
+"emptyDataMessage" = "No data available.\nTry to refresh.";
+"pokemonListTitle" = "Pokèmon List";

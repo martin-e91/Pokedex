@@ -10,12 +10,14 @@ import UIKit
 
 class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol> {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var emptyDataLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = presenter.screenTitle
         setupCollectionView()
+        setupEmptyDataLabel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -29,8 +31,14 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
         TitledImageCell.registerNib(for: collectionView)
     }
     
+    private func setupEmptyDataLabel() {
+        emptyDataLabel.isHidden = presenter.numberOfItems > 0
+        emptyDataLabel.text = Strings.emptyDataMessage.localized
+    }
+    
     override func updateState() {
         collectionView.reloadData()
+        setupEmptyDataLabel()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

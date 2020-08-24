@@ -54,7 +54,7 @@ final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCo
 }
 
 extension PokemonListPresenter: PokemonListPresenterProtocol {
-    var screenTitle: String { "Pokèmon List" }
+    var screenTitle: String { Strings.pokemonListTitle.localized }
     
     var numberOfItems: Int { pokemonReferences.count }
     
