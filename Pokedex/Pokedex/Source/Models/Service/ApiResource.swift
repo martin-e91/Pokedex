@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PokemonReference: Decodable, Hashable {
+struct ApiResource: Decodable, Hashable {
     
     /// This pokemon's name.
     let name: String

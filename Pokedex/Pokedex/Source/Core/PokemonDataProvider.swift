@@ -10,7 +10,7 @@ import Foundation
 import NetworkLayer
 
 protocol PokemonProvider: Downloader {
-    typealias PokemonReferenceCompletion = (Result<PaginatedResult<PokemonReference>, Error>) -> Void
+    typealias PokemonReferenceCompletion = (Result<PaginatedResult<ApiResource>, Error>) -> Void
     typealias PokemonDetailsCompletion = (Result<PokemonDetails, Error>) -> Void
     
     /// Retrieves pokemon references.
@@ -35,7 +35,7 @@ extension PokemonDataProvider: PokemonProvider {
     func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion) {
         let request = NetworkRequest(method: .get,
                                      endpoint: Api.Pokemon.pokemon(offset: startingIndex, limit: resultsPerPage).makeEndpoint())
-        networkClient.perform(request) { [weak self] (result: Result<PaginatedResult<PokemonReference>, NetworkError>) in
+        networkClient.perform(request) { [weak self] (result: Result<PaginatedResult<ApiResource>, NetworkError>) in
             guard let self = self else { return }
             switch result {
             case .success(let references):

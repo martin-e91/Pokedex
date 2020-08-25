@@ -35,13 +35,13 @@ protocol PokemonListPresenterProtocol {
 
 final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCoordinator> {
     private let pokemonProvider: PokemonProvider
-    private let cache = Cache<Int, PokemonReference>()
-    private var pokemonReferences: [PokemonReference] = []
-    private var lastResults: PaginatedResult<PokemonReference> = .init(count: 0, next: nil, previous: nil, results: []) {
+    private let cache = Cache<Int, ApiResource>()
+    private var pokemonResources: [ApiResource] = []
+    private var lastResults: PaginatedResult<ApiResource> = .init(count: 0, next: nil, previous: nil, results: []) {
         didSet {
-            pokemonReferences.append(contentsOf: lastResults.results)
-            pokemonReferences.removeDuplicates()
-            for (index, reference) in pokemonReferences.enumerated() {
+            pokemonResources.append(contentsOf: lastResults.results)
+            pokemonResources.removeDuplicates()
+            for (index, reference) in pokemonResources.enumerated() {
                 cache.insert(reference, forKey: index)
             }
         }
@@ -62,7 +62,7 @@ final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCo
 extension PokemonListPresenter: PokemonListPresenterProtocol {
     var screenTitle: String { Strings.pokemonListTitle.localized }
     
-    var numberOfItems: Int { pokemonReferences.count }
+    var numberOfItems: Int { pokemonResources.count }
     
     var itemsPerRow: CGFloat {
         isIpad ? 3 : 1
@@ -100,12 +100,12 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
         fetchData(from: indexPath.row)
     }
     
-    private func getReference(at index: Int) -> PokemonReference? {
+    private func getReference(at index: Int) -> ApiResource? {
         if let cached = cache.value(forKey: index) {
             return cached
         } else {
-            guard index < pokemonReferences.count else { return nil }
-            return pokemonReferences[index]
+            guard index < pokemonResources.count else { return nil }
+            return pokemonResources[index]
         }
     }
     

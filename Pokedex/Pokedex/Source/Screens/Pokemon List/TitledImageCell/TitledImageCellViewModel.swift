@@ -17,7 +17,7 @@ protocol TitledImageCellViewModelProtocol {
 }
 
 class TitledImageCellViewModel {
-    private let model: PokemonReference
+    private let model: ApiResource
     private let provider: PokemonProvider
     private var pokemon: Pokemon?
     
@@ -29,7 +29,7 @@ class TitledImageCellViewModel {
         return UIImage(data: data) ?? Assets.pokemonImagePlaceholder.image
     }
     
-    init(model: PokemonReference, provider: PokemonProvider) {
+    init(model: ApiResource, provider: PokemonProvider) {
         self.model = model
         self.provider = provider
     }
