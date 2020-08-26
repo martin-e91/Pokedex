@@ -13,10 +13,10 @@ protocol PokemonDetailsPresenterProtocol {
 }
 
 final class PokemonDetailsPresenter: BasePresenter<PokemonDetailsViewController, AppCoordinator> {
-    private let pokemonDetails: PokemonDetails
+    private let pokemon: Pokemon
     
-    required init(with coordinator: AppCoordinator, pokemonDetails: PokemonDetails) {
-        self.pokemonDetails = pokemonDetails
+    required init(with coordinator: AppCoordinator, pokemon: Pokemon) {
+        self.pokemon = pokemon
         super.init(with: coordinator)
     }
     

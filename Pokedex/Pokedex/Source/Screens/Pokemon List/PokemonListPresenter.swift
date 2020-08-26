@@ -111,13 +111,13 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
     
     func didSelectCell(at indexPath: IndexPath) {
         guard let reference = getReference(at: indexPath.row) else { return }
-        pokemonProvider.getPokemonDetails(from: reference.url) { [weak self] (result: Result<PokemonDetails, Error>) in
+        pokemonProvider.getPokemon(from: reference.url) { [weak self] (result: Result<Pokemon, Error>) in
             guard let self = self else { return }
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
-            case .success(let details):
-                self.coordinator.navigate(to: .details(pokemonDetails: details))
+            case .success(let pokemon):
+                self.coordinator.navigate(to: .details(pokemon: pokemon))
             }
         }
     }
