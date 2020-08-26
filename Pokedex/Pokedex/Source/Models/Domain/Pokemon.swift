@@ -13,10 +13,21 @@ struct Pokemon {
     let id: Int
     let name: String
     let imageData: Data
+    let weight: Int
+    let types: [TypeElement]
+    let locationAreaEncounters: String
+    let abilities: [Ability]
+}
+
+extension Pokemon {
+    struct TypeElement: Decodable {
+        /// The order the Pokémon's types are listed in.
+        let slot: Int
+        let name: String
+    }
     
-    init(from pokemonDetails: PokemonDetails, with imageData: Data) {
-        self.id = pokemonDetails.id
-        self.name = pokemonDetails.name
-        self.imageData = imageData
+    struct Ability {
+        let slot: Int
+        let name: String
     }
 }
