@@ -35,15 +35,11 @@ protocol PokemonListPresenterProtocol {
 
 final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCoordinator> {
     private let pokemonProvider: PokemonProvider
-    private let cache = Cache<Int, ApiResource>()
     private var pokemonResources: [ApiResource] = []
     private var lastResults: PaginatedResult<ApiResource> = .init(count: 0, next: nil, previous: nil, results: []) {
         didSet {
             pokemonResources.append(contentsOf: lastResults.results)
             pokemonResources.removeDuplicates()
-            for (index, reference) in pokemonResources.enumerated() {
-                cache.insert(reference, forKey: index)
-            }
         }
     }
     
@@ -101,12 +97,8 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
     }
     
     private func getReference(at index: Int) -> ApiResource? {
-        if let cached = cache.value(forKey: index) {
-            return cached
-        } else {
-            guard index < pokemonResources.count else { return nil }
-            return pokemonResources[index]
-        }
+        guard index < pokemonResources.count else { return nil }
+        return pokemonResources[index]
     }
     
     func didSelectCell(at indexPath: IndexPath) {
@@ -134,7 +126,6 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
                 self.lastResults = results
                 self.view.updateState()
             }
-            
         }
     }
     

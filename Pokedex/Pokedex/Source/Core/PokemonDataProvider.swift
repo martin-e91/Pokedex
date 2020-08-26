@@ -11,7 +11,6 @@ import NetworkLayer
 
 protocol PokemonProvider: Downloader {
     typealias PokemonReferenceCompletion = (Result<PaginatedResult<ApiResource>, Error>) -> Void
-    typealias PokemonDetailsCompletion = (Result<PokemonDetails, Error>) -> Void
     typealias PokemonCompletion = (Result<Pokemon, Error>) -> Void
     
     /// Retrieves pokemon references.
@@ -21,12 +20,6 @@ protocol PokemonProvider: Downloader {
     ///   - completion: Completion block.
     func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion)
     
-    /// Retrieves details for the pokemon at the given url.
-    /// - Parameters:
-    ///   - urlString: Url for the desired pokemon.
-    ///   - completion: Completion block.
-    func getPokemonDetails(from urlString: String, completion: @escaping PokemonDetailsCompletion)
-    
     /// Retrieves the pokemon at the given url.
     /// - Parameters:
     ///   - id: Id of the desired pokemon.
@@ -35,26 +28,12 @@ protocol PokemonProvider: Downloader {
 }
 
 final class PokemonDataProvider {
-    private lazy var networkClient = NetworkClient()
-    private let pokemonCache = Cache<String, Pokemon>()
-}
-
-extension PokemonDataProvider: PokemonProvider {
-    func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion) {
-        let request = NetworkRequest(method: .get,
-                                     endpoint: Api.Pokemon.pokemon(offset: startingIndex, limit: resultsPerPage).makeEndpoint())
-        networkClient.perform(request) { [weak self] (result: Result<PaginatedResult<ApiResource>, NetworkError>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let references):
-                completion(.success(references))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
+    typealias PokemonDetailsCompletion = (Result<PokemonDetails, Error>) -> Void
     
-    func getPokemonDetails(from urlString: String, completion: @escaping PokemonDetailsCompletion) {
+    private lazy var networkClient = NetworkClient()
+    private let cache = Cache<String, Any>()
+    
+    private func getPokemonDetails(from urlString: String, completion: @escaping PokemonDetailsCompletion) {
         let request = NetworkRequest(urlString: urlString)
         networkClient.perform(request) { [weak self] (result: Result<PokemonDetails, NetworkError>) in
             guard let self = self else { return }
@@ -66,9 +45,34 @@ extension PokemonDataProvider: PokemonProvider {
             }
         }
     }
+}
+
+extension PokemonDataProvider: PokemonProvider {
+    func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion) {
+        let endpoint = Api.Pokemon.pokemon(offset: startingIndex, limit: resultsPerPage).makeEndpoint()
+        let request = NetworkRequest(method: .get,
+                                     endpoint: endpoint)
+        
+        if let url = try? endpoint.makeURL().absoluteString,
+            let references = cache.value(forKey: url) as? PaginatedResult<ApiResource> {
+            completion(.success(references))
+        }
+            
+        networkClient.perform(request) { [weak self] (result: Result<PaginatedResult<ApiResource>, NetworkError>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let references):
+                completion(.success(references))
+                guard let url = try? endpoint.makeURL().absoluteString else { return }
+                self.cache.insert(references, forKey: url)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
     
     func getPokemon(from urlString: String, completion: @escaping PokemonCompletion) {
-        if let pokemon = pokemonCache.value(forKey: urlString) {
+        if let pokemon = cache.value(forKey: urlString) as? Pokemon {
             completion(.success(pokemon))
             return
         }
@@ -85,7 +89,7 @@ extension PokemonDataProvider: PokemonProvider {
                         completion(.failure(error))
                     case .success(let imageData):
                         let pokemon = details.convertToPokemon(with: imageData)
-                        self?.pokemonCache.insert(pokemon, forKey: urlString)
+                        self?.cache.insert(pokemon, forKey: urlString)
                         completion(.success(pokemon))
                     }
                 }
