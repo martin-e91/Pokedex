@@ -11,4 +11,8 @@ import Foundation
 enum Strings: String, Localizable {
     case emptyDataMessage
     case pokemonListTitle
+    case weightLabel
+    case typesLabel
+    case abilities
+    case stats
 }

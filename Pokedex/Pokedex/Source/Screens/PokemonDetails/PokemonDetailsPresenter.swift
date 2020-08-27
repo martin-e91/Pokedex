@@ -9,9 +9,13 @@
 import UIKit
 
 protocol PokemonDetailsPresenterProtocol {
+    typealias Field = (label: String, value: String)
+    
     var screenTitle: String { get }
     var image: UIImage { get }
     var name: String { get }
+    var weight: Field { get }
+    var typesLabel: String { get }
     var types: [String] { get }
 }
 
@@ -39,5 +43,12 @@ extension PokemonDetailsPresenter: PokemonDetailsPresenterProtocol {
     
     var name: String { pokemon.name.capitalized }
     
+    var weight: Field {
+        let measurement = Measurement(value: pokemon.weight / 10, unit: UnitMass.kilograms)
+        let value = MeasurementFormatter().string(from: measurement)
+        return (label: Strings.weightLabel.localized, value: value)
+    }
+    
+    var typesLabel: String { Strings.typesLabel.localized }
     var types: [String] { pokemon.types.map(\.name) }
 }

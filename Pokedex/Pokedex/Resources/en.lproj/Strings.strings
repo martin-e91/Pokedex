@@ -8,3 +8,7 @@
 
 "emptyDataMessage" = "No data available.\nTry to refresh.";
 "pokemonListTitle" = "Pokèmon List";
+"weightLabel" = "Weight:";
+"typesLabel" = "Types:";
+"abilities" = "Abilities";
+"stats" = "Stats";

@@ -13,7 +13,7 @@ struct Pokemon {
     let id: Int
     let name: String
     let imageData: Data
-    let weight: Int
+    let weight: Double
     let types: [TypeElement]
     let locationAreaEncounters: String
     let abilities: [Ability]

@@ -12,7 +12,7 @@ struct PokemonDetails: Decodable {
     let id: Int
     let name: String
     let sprites: Sprites
-    let weight: Int
+    let weight: Double
     let types: [TypeElement]
     let locationAreaEncounters: String
     let abilities: [Ability]
