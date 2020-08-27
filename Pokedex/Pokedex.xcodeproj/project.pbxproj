@@ -19,6 +19,8 @@
 		BA32047D24ED383F009921A4 /* PokemonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA32047B24ED383F009921A4 /* PokemonListViewController.xib */; };
 		BA32047F24ED7818009921A4 /* UICollectionViewCell+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */; };
 		BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */; };
+		BA5D56CC24F7A71400707E44 /* UITableViewCell+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D56CB24F7A71300707E44 /* UITableViewCell+Register.swift */; };
+		BA5D56CE24F7BC5800707E44 /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D56CD24F7BC5800707E44 /* Nameable.swift */; };
 		BA6A2ACA24EEB6AD004B1800 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2AC924EEB6AD004B1800 /* Constants.swift */; };
 		BA6A2ACE24EEC90E004B1800 /* TitledImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2ACC24EEC90E004B1800 /* TitledImageCell.swift */; };
 		BA6A2ACF24EEC90E004B1800 /* TitledImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6A2ACD24EEC90E004B1800 /* TitledImageCell.xib */; };
@@ -91,6 +93,8 @@
 		BA32047B24ED383F009921A4 /* PokemonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonListViewController.xib; sourceTree = "<group>"; };
 		BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Register.swift"; sourceTree = "<group>"; };
 		BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
+		BA5D56CB24F7A71300707E44 /* UITableViewCell+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Register.swift"; sourceTree = "<group>"; };
+		BA5D56CD24F7BC5800707E44 /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
 		BA6A2AC924EEB6AD004B1800 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BA6A2ACC24EEC90E004B1800 /* TitledImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledImageCell.swift; sourceTree = "<group>"; };
 		BA6A2ACD24EEC90E004B1800 /* TitledImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitledImageCell.xib; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			children = (
 				BA32047224ED3563009921A4 /* Coordinator+Transition.swift */,
 				BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */,
+				BA5D56CB24F7A71300707E44 /* UITableViewCell+Register.swift */,
 				BAE9255624F2E2C80049C2ED /* Array+RemoveDuplicates.swift */,
 			);
 			path = Extensions;
@@ -177,6 +182,7 @@
 				BA6A2AD024EECBB1004B1800 /* Assets.swift */,
 				BAE9253E24F281410049C2ED /* Injector.swift */,
 				BAE9254024F2849F0049C2ED /* ConcreteInjector.swift */,
+				BA5D56CD24F7BC5800707E44 /* Nameable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 				BA6A2ACA24EEB6AD004B1800 /* Constants.swift in Sources */,
 				BA7D97A724F0288F00744355 /* PokemonDataProvider.swift in Sources */,
 				BA9F06E624ED1A37003A6A7B /* BasePresenter.swift in Sources */,
+				BA5D56CE24F7BC5800707E44 /* Nameable.swift in Sources */,
 				BA32047F24ED7818009921A4 /* UICollectionViewCell+Register.swift in Sources */,
 				BAE9254124F2849F0049C2ED /* ConcreteInjector.swift in Sources */,
 				BA9F06EA24ED1A50003A6A7B /* BaseView.swift in Sources */,
@@ -481,6 +488,7 @@
 				BA1E571024F4568800DC245A /* PokemonDetailsViewController.swift in Sources */,
 				BA6A2ACE24EEC90E004B1800 /* TitledImageCell.swift in Sources */,
 				BA7D97AC24F02C0300744355 /* ApiResource.swift in Sources */,
+				BA5D56CC24F7A71400707E44 /* UITableViewCell+Register.swift in Sources */,
 				BAE9254924F2B2890049C2ED /* TitledImageCellViewModel.swift in Sources */,
 				BAE9255724F2E2C80049C2ED /* Array+RemoveDuplicates.swift in Sources */,
 				BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */,

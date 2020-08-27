@@ -9,6 +9,11 @@
 import UIKit
 
 final class PokemonDetailsViewController: BaseViewController<PokemonDetailsPresenterProtocol> {
+    enum Sections: Int, CaseIterable {
+        case stats = 0
+        case abilities
+    }
+    
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var weightLabel: UILabel!
@@ -45,6 +50,37 @@ final class PokemonDetailsViewController: BaseViewController<PokemonDetailsPrese
     
     private func setupTableView() {
         tableView.separatorStyle = .none
+        tableView.dataSource = self
+        UITableViewCell.registerClass(for: tableView)
     }
     
+}
+
+extension PokemonDetailsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        presenter.numbersOfSections
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        presenter.title(for: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let section = Sections(rawValue: indexPath.section) else { return .init() }
+        let cell: UITableViewCell
+        
+        switch section {
+        case .stats:
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.reuseIdentifier)
+        case .abilities:
+            cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.reuseIdentifier, for: indexPath)
+        }
+        presenter.setup(cell, at: indexPath)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.numbersOfRows(in: section)
+    }
 }
