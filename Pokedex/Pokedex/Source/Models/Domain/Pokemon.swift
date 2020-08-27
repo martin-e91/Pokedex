@@ -17,6 +17,7 @@ struct Pokemon {
     let types: [TypeElement]
     let locationAreaEncounters: String
     let abilities: [Ability]
+    let stats: [Stat]
 }
 
 extension Pokemon {
@@ -28,6 +29,11 @@ extension Pokemon {
     
     struct Ability {
         let slot: Int
+        let name: String
+    }
+    
+    struct Stat {
+        let baseStat: Int
         let name: String
     }
 }

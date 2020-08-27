@@ -16,21 +16,24 @@ struct PokemonDetails: Decodable {
     let types: [TypeElement]
     let locationAreaEncounters: String
     let abilities: [Ability]
+    let stats: [Stat]
     
     func convertToPokemon(with imageData: Data) -> Pokemon {
         let types = self.types.map { Pokemon.TypeElement(slot: $0.slot, name: $0.name) }
         let abilities = self.abilities.map { Pokemon.Ability(slot: $0.slot, name: $0.name) }
+        let stats = self.stats.map { Pokemon.Stat(baseStat: $0.baseStat, name: $0.name) }
         return Pokemon(id: id,
                        name: name,
                        imageData: imageData,
                        weight: weight,
                        types: types,
                        locationAreaEncounters: locationAreaEncounters,
-                       abilities: abilities)
+                       abilities: abilities,
+                       stats: stats)
     }
     
     enum CodingKeys: String, CodingKey {
-        case id, name, sprites, weight, types, abilities
+        case id, name, sprites, weight, types, abilities, stats
         case locationAreaEncounters = "location_area_encounters"
     }
 
@@ -75,5 +78,14 @@ extension PokemonDetails {
         var name: String { type.name }
     }
     
-
+    struct Stat: Decodable {
+        let baseStat: Int
+        var name: String { stat.name }
+        private let stat: ApiResource
+        
+        enum CodingKeys: String, CodingKey {
+            case stat
+            case baseStat = "base_stat"
+        }
+    }
 }
