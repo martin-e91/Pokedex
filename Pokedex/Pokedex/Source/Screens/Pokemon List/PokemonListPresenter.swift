@@ -107,7 +107,7 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
             guard let self = self else { return }
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
+                self.handleError(error)
             case .success(let pokemon):
                 self.coordinator.navigate(to: .details(pokemon: pokemon))
             }
@@ -121,7 +121,7 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
             self.view.hideHud()
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
+                self.handleError(error)
             case .success(let results):
                 self.lastResults = results
                 self.view.updateState()

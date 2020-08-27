@@ -15,4 +15,6 @@ enum Strings: String, Localizable {
     case typesLabel
     case abilities
     case stats
+    case ok
+    case error
 }

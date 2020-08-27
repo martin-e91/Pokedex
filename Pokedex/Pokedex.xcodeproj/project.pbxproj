@@ -21,6 +21,7 @@
 		BA32048124ED7849009921A4 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */; };
 		BA5D56CC24F7A71400707E44 /* UITableViewCell+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D56CB24F7A71300707E44 /* UITableViewCell+Register.swift */; };
 		BA5D56CE24F7BC5800707E44 /* Nameable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D56CD24F7BC5800707E44 /* Nameable.swift */; };
+		BA5D56D024F7C43500707E44 /* BaseViewController+ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D56CF24F7C43500707E44 /* BaseViewController+ShowError.swift */; };
 		BA6A2ACA24EEB6AD004B1800 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2AC924EEB6AD004B1800 /* Constants.swift */; };
 		BA6A2ACE24EEC90E004B1800 /* TitledImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6A2ACC24EEC90E004B1800 /* TitledImageCell.swift */; };
 		BA6A2ACF24EEC90E004B1800 /* TitledImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6A2ACD24EEC90E004B1800 /* TitledImageCell.xib */; };
@@ -95,6 +96,7 @@
 		BA32048024ED7849009921A4 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
 		BA5D56CB24F7A71300707E44 /* UITableViewCell+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Register.swift"; sourceTree = "<group>"; };
 		BA5D56CD24F7BC5800707E44 /* Nameable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameable.swift; sourceTree = "<group>"; };
+		BA5D56CF24F7C43500707E44 /* BaseViewController+ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+ShowError.swift"; sourceTree = "<group>"; };
 		BA6A2AC924EEB6AD004B1800 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BA6A2ACC24EEC90E004B1800 /* TitledImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledImageCell.swift; sourceTree = "<group>"; };
 		BA6A2ACD24EEC90E004B1800 /* TitledImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitledImageCell.xib; sourceTree = "<group>"; };
@@ -165,10 +167,11 @@
 		BA32047124ED3556009921A4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BAE9255624F2E2C80049C2ED /* Array+RemoveDuplicates.swift */,
 				BA32047224ED3563009921A4 /* Coordinator+Transition.swift */,
 				BA32047E24ED7818009921A4 /* UICollectionViewCell+Register.swift */,
 				BA5D56CB24F7A71300707E44 /* UITableViewCell+Register.swift */,
-				BAE9255624F2E2C80049C2ED /* Array+RemoveDuplicates.swift */,
+				BA5D56CF24F7C43500707E44 /* BaseViewController+ShowError.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -176,13 +179,13 @@
 		BA6A2AC824EEB6A3004B1800 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				BA6A2AC924EEB6AD004B1800 /* Constants.swift */,
-				BA1E570224F40D3900DC245A /* Strings.swift */,
-				BA1E570424F4141E00DC245A /* Localizable.swift */,
 				BA6A2AD024EECBB1004B1800 /* Assets.swift */,
-				BAE9253E24F281410049C2ED /* Injector.swift */,
 				BAE9254024F2849F0049C2ED /* ConcreteInjector.swift */,
+				BA6A2AC924EEB6AD004B1800 /* Constants.swift */,
+				BAE9253E24F281410049C2ED /* Injector.swift */,
+				BA1E570424F4141E00DC245A /* Localizable.swift */,
 				BA5D56CD24F7BC5800707E44 /* Nameable.swift */,
+				BA1E570224F40D3900DC245A /* Strings.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				BAE9254B24F2BB550049C2ED /* Pokemon.swift in Sources */,
 				BA9F06F024ED1A71003A6A7B /* Navigator.swift in Sources */,
 				BA1E570D24F4564600DC245A /* PokemonDetailsPresenter.swift in Sources */,
+				BA5D56D024F7C43500707E44 /* BaseViewController+ShowError.swift in Sources */,
 				BA1E570324F40D3A00DC245A /* Strings.swift in Sources */,
 				BA9F06EC24ED1A5C003A6A7B /* Presenter.swift in Sources */,
 				BAE9255124F2C8CF0049C2ED /* PokemonDetails.swift in Sources */,

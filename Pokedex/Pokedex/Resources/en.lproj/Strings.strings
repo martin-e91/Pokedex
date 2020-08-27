@@ -12,3 +12,5 @@
 "typesLabel" = "Types:";
 "abilities" = "Abilities";
 "stats" = "Stats";
+"ok" = "Ok";
+"error" = "Error";
