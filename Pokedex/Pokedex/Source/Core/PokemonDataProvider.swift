@@ -13,14 +13,14 @@ protocol PokemonProvider: Downloader {
     typealias PokemonReferenceCompletion = (Result<PaginatedResult<ApiResource>, Error>) -> Void
     typealias PokemonCompletion = (Result<Pokemon, Error>) -> Void
     
-    /// Retrieves pokemon references.
+    /// Retrieves pokemon references. The result is cached.
     /// - Parameters:
     ///   - startingIndex: The starting position for the paginated result.
     ///   - resultsPerPage: Number of expected results.
     ///   - completion: Completion block.
     func getPokemonReferences(startingIndex: Int, resultsPerPage: Int, completion: @escaping PokemonReferenceCompletion)
     
-    /// Retrieves the pokemon at the given url.
+    /// Retrieves the pokemon at the given url. The result is cached.
     /// - Parameters:
     ///   - id: Id of the desired pokemon.
     ///   - completion: Completion block.

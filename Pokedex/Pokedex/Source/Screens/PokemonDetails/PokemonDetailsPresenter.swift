@@ -6,10 +6,12 @@
 //  Copyright © 2020 Martino Godswill Essuman. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol PokemonDetailsPresenterProtocol {
-    
+    var screenTitle: String { get }
+    var image: UIImage { get }
+    var name: String { get }
 }
 
 final class PokemonDetailsPresenter: BasePresenter<PokemonDetailsViewController, AppCoordinator> {
@@ -27,5 +29,12 @@ final class PokemonDetailsPresenter: BasePresenter<PokemonDetailsViewController,
 }
 
 extension PokemonDetailsPresenter: PokemonDetailsPresenterProtocol {
+    var screenTitle: String { pokemon.name.capitalized }
     
+    var image: UIImage {
+        guard let image = UIImage(data: pokemon.imageData) else { return Assets.pokemonImagePlaceholder.image }
+        return image
+    }
+    
+    var name: String { pokemon.name.capitalized }
 }
