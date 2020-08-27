@@ -12,6 +12,7 @@ protocol PokemonDetailsPresenterProtocol {
     var screenTitle: String { get }
     var image: UIImage { get }
     var name: String { get }
+    var types: [String] { get }
 }
 
 final class PokemonDetailsPresenter: BasePresenter<PokemonDetailsViewController, AppCoordinator> {
@@ -37,4 +38,6 @@ extension PokemonDetailsPresenter: PokemonDetailsPresenterProtocol {
     }
     
     var name: String { pokemon.name.capitalized }
+    
+    var types: [String] { pokemon.types.map(\.name) }
 }
