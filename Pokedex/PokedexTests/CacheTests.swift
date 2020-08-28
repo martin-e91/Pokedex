@@ -18,9 +18,17 @@ class CacheTests: XCTestCase {
         
         XCTAssertEqual(sut.value(forKey: 0), "A")
         XCTAssertEqual(sut.value(forKey: 1), "B")
+    }
+    
+    func testCacheMultipleInsertWithSameKey() {
+        let sut = Cache<Int, String>()
+        let key = 0
+        sut.insert("A", forKey: key)
         
-        sut.insert("Z", forKey: 0)
-        XCTAssertEqual(sut.value(forKey: 0), "Z")
+        precondition(sut.value(forKey: key) == "A")
+        
+        sut.insert("Z", forKey: key)
+        XCTAssertEqual(sut.value(forKey: key), "Z")
     }
     
     func testCacheMultipleReading() {
@@ -38,6 +46,20 @@ class CacheTests: XCTestCase {
         for index in 0..<10 {
             XCTAssertNil(sut.value(forKey: index))
         }
+    }
+    
+    func testCacheReset() {
+        let sut = Cache<Int, String>()
+        sut.insert("A", forKey: 0)
+        sut.insert("B", forKey: 1)
+        
+        precondition(sut.value(forKey: 0) != nil)
+        precondition(sut.value(forKey: 1) != nil)
+        
+        sut.reset()
+        
+        XCTAssertNil(sut.value(forKey: 0))
+        XCTAssertNil(sut.value(forKey: 1))
     }
     
 }
