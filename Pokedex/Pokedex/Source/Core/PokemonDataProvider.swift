@@ -25,13 +25,17 @@ protocol PokemonProvider: Downloader {
     ///   - id: Id of the desired pokemon.
     ///   - completion: Completion block.
     func getPokemon(from urlString: String, completion: @escaping PokemonCompletion)
+    
+    /// Resets the cache.
+    func resetCache()
 }
 
 final class PokemonDataProvider {
     typealias PokemonDetailsCompletion = (Result<PokemonDetails, Error>) -> Void
     
     private lazy var networkClient = NetworkClient()
-    private let cache = Cache<String, Any>()
+    private let pokemonCache = Cache<String, Pokemon>()
+    private let resourcesCache = Cache<String, PaginatedResult<ApiResource>>()
     
     private func getPokemonDetails(from urlString: String, completion: @escaping PokemonDetailsCompletion) {
         let request = NetworkRequest(urlString: urlString)
@@ -45,6 +49,7 @@ final class PokemonDataProvider {
             }
         }
     }
+    
 }
 
 extension PokemonDataProvider: PokemonProvider {
@@ -54,7 +59,7 @@ extension PokemonDataProvider: PokemonProvider {
                                      endpoint: endpoint)
         
         if let url = try? endpoint.makeURL().absoluteString,
-            let references = cache.value(forKey: url) as? PaginatedResult<ApiResource> {
+            let references = resourcesCache.value(forKey: url) as? PaginatedResult<ApiResource> {
             completion(.success(references))
         }
             
@@ -64,7 +69,7 @@ extension PokemonDataProvider: PokemonProvider {
             case .success(let references):
                 completion(.success(references))
                 guard let url = try? endpoint.makeURL().absoluteString else { return }
-                self.cache.insert(references, forKey: url)
+                self.resourcesCache.insert(references, forKey: url)
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -72,7 +77,7 @@ extension PokemonDataProvider: PokemonProvider {
     }
     
     func getPokemon(from urlString: String, completion: @escaping PokemonCompletion) {
-        if let pokemon = cache.value(forKey: urlString) as? Pokemon {
+        if let pokemon = pokemonCache.value(forKey: urlString) as? Pokemon {
             completion(.success(pokemon))
             return
         }
@@ -89,7 +94,7 @@ extension PokemonDataProvider: PokemonProvider {
                         completion(.failure(error))
                     case .success(let imageData):
                         let pokemon = details.convertToPokemon(with: imageData)
-                        self?.cache.insert(pokemon, forKey: urlString)
+                        self?.pokemonCache.insert(pokemon, forKey: urlString)
                         completion(.success(pokemon))
                     }
                 }
@@ -107,5 +112,10 @@ extension PokemonDataProvider: PokemonProvider {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func resetCache() {
+        pokemonCache.reset()
+        resourcesCache.reset()
     }
 }

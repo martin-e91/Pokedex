@@ -22,7 +22,7 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.fetchData(from: 0)
+        presenter.fetchData()
     }
     
     private func setupCollectionView() {
@@ -36,7 +36,7 @@ class PokemonListViewController: BaseViewController<PokemonListPresenterProtocol
     
     @objc
     private func didDragDownCollectionView() {
-        presenter.fetchData(from: 0)
+        presenter.fetchData()
         collectionView.refreshControl?.endRefreshing()
     }
     

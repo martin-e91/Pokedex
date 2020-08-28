@@ -14,6 +14,9 @@ protocol PokemonListPresenterProtocol {
     var itemsPerRow: CGFloat { get }
     var itemsPerColumn: CGFloat { get }
     
+    /// Asks the presenter to fetch data.
+    func fetchData()
+    
     /// Setups the cell at the given indexPath.
     /// - Parameters:
     ///   - cell: The cell to be configured.
@@ -27,10 +30,6 @@ protocol PokemonListPresenterProtocol {
     /// Tells the presenter that the cell at the given indexPath it's been selected.
     /// - Parameter indexPath: the cell's indexPath.
     func didSelectCell(at indexPath: IndexPath)
-    
-    /// Asks the presenter to fetch data starting from the given index.
-    /// - Parameter startingIndex: starting position of the data to be fetched.
-    func fetchData(from startingIndex: Int)
 }
 
 final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCoordinator> {
@@ -43,6 +42,17 @@ final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCo
         }
     }
     
+    private var isIpad: Bool {
+        let sizeClasses = (view.traitCollection.horizontalSizeClass, view.traitCollection.verticalSizeClass)
+        
+        switch sizeClasses {
+        case (.regular, .regular):
+            return true
+        default:
+            return false
+        }
+    }
+    
     required init(with coordinator: AppCoordinator, pokemonProvider: PokemonProvider) {
         self.pokemonProvider = pokemonProvider
         super.init(with: coordinator)
@@ -51,6 +61,28 @@ final class PokemonListPresenter: BasePresenter<PokemonListViewController, AppCo
     @available(*, unavailable)
     required public init(with coordinator: Nav) {
         fatalError("init(with:) has not been implemented")
+    }
+    
+    private func getReference(at index: Int) -> ApiResource? {
+        guard index < pokemonResources.count else { return nil }
+        return pokemonResources[index]
+    }
+    
+    /// Asks the presenter to fetch data starting from the given index.
+    /// - Parameter startingIndex: starting position of the data to be fetched.
+    private func fetchData(from startingIndex: Int) {
+        view.showHud()
+        pokemonProvider.getPokemonReferences(startingIndex: startingIndex, resultsPerPage: 30) { [weak self] result in
+            guard let self = self else { return }
+            self.view.hideHud()
+            switch result {
+            case .failure(let error):
+                self.handleError(error)
+            case .success(let results):
+                self.lastResults = results
+                self.view.updateState()
+            }
+        }
     }
     
 }
@@ -73,15 +105,10 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
         }
     }
     
-    private var isIpad: Bool {
-        let sizeClasses = (view.traitCollection.horizontalSizeClass, view.traitCollection.verticalSizeClass)
-        
-        switch sizeClasses {
-        case (.regular, .regular):
-            return true
-        default:
-            return false
-        }
+    func fetchData() {
+        pokemonProvider.resetCache()
+        pokemonResources = []
+        fetchData(from: 0)
     }
     
     func setup(cell: TitledImageCell, at indexPath: IndexPath) {
@@ -96,11 +123,6 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
         fetchData(from: indexPath.row)
     }
     
-    private func getReference(at index: Int) -> ApiResource? {
-        guard index < pokemonResources.count else { return nil }
-        return pokemonResources[index]
-    }
-    
     func didSelectCell(at indexPath: IndexPath) {
         guard let reference = getReference(at: indexPath.row) else { return }
         pokemonProvider.getPokemon(from: reference.url) { [weak self] (result: Result<Pokemon, Error>) in
@@ -110,21 +132,6 @@ extension PokemonListPresenter: PokemonListPresenterProtocol {
                 self.handleError(error)
             case .success(let pokemon):
                 self.coordinator.navigate(to: .details(pokemon: pokemon))
-            }
-        }
-    }
-    
-    func fetchData(from startingIndex: Int) {
-        view.showHud()
-        pokemonProvider.getPokemonReferences(startingIndex: startingIndex, resultsPerPage: 30) { [weak self] result in
-            guard let self = self else { return }
-            self.view.hideHud()
-            switch result {
-            case .failure(let error):
-                self.handleError(error)
-            case .success(let results):
-                self.lastResults = results
-                self.view.updateState()
             }
         }
     }
